@@ -8,6 +8,6 @@ public class SpeechToText extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_speech_to_text);
+        setContentView(R.layout.fragment_speach_to_text);
     }
 }
