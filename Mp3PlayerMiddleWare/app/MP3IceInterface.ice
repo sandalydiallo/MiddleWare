@@ -1,4 +1,4 @@
-module mp3
+module MP3
 {
     sequence<string> listMusiques;
 

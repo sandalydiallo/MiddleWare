@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'slice'
 
 android {
@@ -18,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 
@@ -35,8 +38,10 @@ buildscript {
 
 slice {
     java {
-        srcDir = '.'
+        srcDir = '\\src\\main\\java\\com\\slice\\MP3IceInterface.ice'
+
     }
+    output=file("\\src\\main\\java\\com")
 }
 
 dependencies {
@@ -50,7 +55,13 @@ dependencies {
 
     compile 'dyanamitechetan.vusikview:vusikview:1.1'
 
-    compile 'com.zeroc:ice:3.7.1'
+    compile 'com.zeroc:ice:3.7.0'
+
+    implementation 'com.zeroc:ice:3.7.0'
+
+    implementation 'com.zeroc:icessl:3.7.0'
+
+    implementation 'com.zeroc:icediscovery:3.7.0'
 }
 
 

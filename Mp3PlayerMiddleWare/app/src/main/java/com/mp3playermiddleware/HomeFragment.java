@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import mp3.*;
+
 /**
  * Created by alpha on 27/04/2018.
  */
@@ -23,7 +25,10 @@ public class HomeFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        final String[] items = {"http://mic.duytan.edu.vn:86/ncs.mp3","Second item"};
+        IceClient c = new IceClient();
+        final String[] items = c.getDataFromServer();
+
+        //final String[] items = {"http://mic.duytan.edu.vn:86/ncs.com.mp3","Second item"};
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
         addItemsInlistMusic(items,view);
 

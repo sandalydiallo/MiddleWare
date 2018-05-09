@@ -1,0 +1,12 @@
+<state>
+  <timestamp value='1525873586916' />
+  <sourceSet name='default'>
+    <source name='C:\Users\alpha\Git\MiddleWare\Mp3PlayerMiddleWare\app\src\main\java\com\slice\MP3IceInterface.ice'>
+      <file name='C:\Users\alpha\Git\MiddleWare\Mp3PlayerMiddleWare\app\src\main\java\com\mp3\ManageMusic.java' />
+      <file name='C:\Users\alpha\Git\MiddleWare\Mp3PlayerMiddleWare\app\src\main\java\com\mp3\ManageMusicPrx.java' />
+      <file name='C:\Users\alpha\Git\MiddleWare\Mp3PlayerMiddleWare\app\src\main\java\com\mp3\_ManageMusicPrxI.java' />
+    </source>
+    <arg value='C:\Program Files\ZeroC\Ice-3.7.0\\bin\slice2java.exe' />
+    <arg value='-IC:\Program Files\ZeroC\Ice-3.7.0\\slice' />
+  </sourceSet>
+</state>

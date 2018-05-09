@@ -114,8 +114,8 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
                     }
                 };
 
-                //mp3Player.execute("http://mic.duytan.edu.vn:86/ncs.mp3"); // Direct link mp3 file
-                mp3Player.execute("http://192.168.43.214:8090/sample.mp3");
+                //mp3Player.execute("http://mic.duytan.edu.vn:86/ncs.mp3"); // Direct link com.mp3 file
+                mp3Player.execute("http://192.168.43.214:8090/sample.com.mp3");
 
                 musicView.start();
             }
