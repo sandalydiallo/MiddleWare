@@ -1,3 +1,0 @@
-# Application android (Mrs Morchid)
-
-
