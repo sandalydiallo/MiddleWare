@@ -8,5 +8,7 @@ module mp3
         listMusiques getListeMusic();       
 
         bool streamerMusique(string mediaName,string ipClient);
+
+        bool stopMusique(string ipClient);
     }
 }

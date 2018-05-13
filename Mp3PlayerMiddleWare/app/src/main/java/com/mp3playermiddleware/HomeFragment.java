@@ -19,26 +19,30 @@ import mp3.*;
 public class HomeFragment extends android.support.v4.app.Fragment {
 
     private ListView list_music;
-    private TextView test ;
+    private TextView selectedItem ;
+
+    private IceClient iceClient;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        IceClient c = new IceClient();
-        final String[] items = c.getDataFromServer();
+        iceClient = new IceClient();
+        String[] items = iceClient.getInstanceServer();
 
-        //final String[] items = {"http://mic.duytan.edu.vn:86/ncs.com.mp3","Second item"};
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
         addItemsInlistMusic(items,view);
 
-        test = (TextView)getActivity().findViewById(R.id.textViewTest);
+
+
+        selectedItem = (TextView)getActivity().findViewById(R.id.textViewSelectedItem);
+        selectedItem.setText(items[0]);
+
 
         list_music.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                //view.setSelected(true);
-                test.setText(items[position]);
+                selectedItem.setText(items[position]);
             }
         });
 
@@ -51,11 +55,11 @@ public class HomeFragment extends android.support.v4.app.Fragment {
 
         ArrayAdapter<String> listMusicAdapter = new ArrayAdapter<String>(
                 getActivity(),
-               android.R.layout.simple_list_item_1,
-               // R.layout.text_view_item,
+                android.R.layout.simple_list_item_1,
                 items
         );
 
         list_music.setAdapter(listMusicAdapter);
+
     }
 }

@@ -26,6 +26,8 @@ public interface ManageMusic extends com.zeroc.Ice.Object
 
     boolean streamerMusique(String mediaName, String ipClient, com.zeroc.Ice.Current current);
 
+    boolean stopMusique(String ipClient, com.zeroc.Ice.Current current);
+
     static final String[] _iceIds =
     {
         "::Ice::Object",
@@ -76,6 +78,20 @@ public interface ManageMusic extends com.zeroc.Ice.Object
         return inS.setResult(ostr);
     }
 
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_stopMusique(ManageMusic obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    {
+        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        String iceP_ipClient;
+        iceP_ipClient = istr.readString();
+        inS.endReadParams();
+        boolean ret = obj.stopMusique(iceP_ipClient, current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        ostr.writeBool(ret);
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
+    }
+
     final static String[] _iceOps =
     {
         "getListeMusic",
@@ -83,6 +99,7 @@ public interface ManageMusic extends com.zeroc.Ice.Object
         "ice_ids",
         "ice_isA",
         "ice_ping",
+        "stopMusique",
         "streamerMusique"
     };
 
@@ -119,6 +136,10 @@ public interface ManageMusic extends com.zeroc.Ice.Object
                 return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
             }
             case 5:
+            {
+                return _iceD_stopMusique(this, in, current);
+            }
+            case 6:
             {
                 return _iceD_streamerMusique(this, in, current);
             }

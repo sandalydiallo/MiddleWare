@@ -18,7 +18,7 @@ public class FavoritesFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        test = (TextView)getActivity().findViewById(R.id.textViewTest);
+        test = (TextView)getActivity().findViewById(R.id.textViewSelectedItem);
 
         test.setText("Favories");
         View v =  inflater.inflate(R.layout.fragment_favorites, container, false);

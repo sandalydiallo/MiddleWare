@@ -1,8 +1,10 @@
 package com.mp3playermiddleware;
+import mp3.*;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.media.MediaPlayer;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -10,7 +12,9 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.Formatter;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
 
     private ImageButton btn_play_pause;
     private SeekBar seekBar;
-    private TextView textView;
+    private TextView textView,textViewSelectedItem;
 
     private VusikView musicView;
 
@@ -33,6 +37,12 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
     private  int realtimeLength;
     final Handler handler = new Handler();
 
+    private IceClient iceClient = new IceClient();
+
+    private com.mp3playermiddleware.HomeFragment defaultHomeFragment;
+    private WifiManager wm;
+    private String ip,currenteMusicPlayin;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -40,17 +50,25 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        wm = (WifiManager) getSystemService(WIFI_SERVICE);
+        ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+        ip = ip.replace(".","");
+
         BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(navListener);
 
-        Fragment defaultHomeFragment = new HomeFragment();
+        defaultHomeFragment = new com.mp3playermiddleware.HomeFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 defaultHomeFragment).commit();
+
+        textViewSelectedItem = (TextView)findViewById(R.id.textViewSelectedItem);
+
 
         musicView = (VusikView)findViewById(R.id.musicView);
 
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBar.setMax(99);// 100% (0-99)
+
         seekBar.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -75,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
             public void onClick(View view) {
                final  ProgressDialog mDialog = new ProgressDialog(MainActivity.this);
 
+
+
                 @SuppressLint("StaticFieldLeak") AsyncTask<String,String,String> mp3Player = new AsyncTask<String, String, String>() {
 
                     @Override
@@ -86,7 +106,17 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
                     @Override
                     protected String doInBackground(String... strings) {
                         try {
+
                             mediaPlayer.setDataSource(strings[0]);
+                            /*mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                @Override
+                                public void onCompletion(MediaPlayer mediaPlayer) {
+                                    mediaPlayer.stop();
+                                    mediaPlayer.reset();
+                                }
+                            });*/
+                            currenteMusicPlayin = textViewSelectedItem.getText().toString();
+                            iceClient.streamer(textViewSelectedItem.getText().toString() , ip);
                             mediaPlayer.prepare();
                         }
                         catch (Exception ex)
@@ -101,21 +131,31 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
 
                         mediaFileLength = mediaPlayer.getDuration();
                         realtimeLength = mediaFileLength;
-                        if (!mediaPlayer.isPlaying()){
-                            mediaPlayer.start();
-                            btn_play_pause.setImageResource(R.drawable.ic_pause);
-                        }else {
-                            mediaPlayer.pause();
+
+                        if( currenteMusicPlayin.equals(textViewSelectedItem.getText().toString())){
+
+                            if (!mediaPlayer.isPlaying()){
+                                mediaPlayer.start();
+                                btn_play_pause.setImageResource(R.drawable.ic_pause);
+                            }else {
+                                mediaPlayer.pause();
+                                btn_play_pause.setImageResource(R.drawable.ic_play);
+                            }
+                        }
+                        else {
                             btn_play_pause.setImageResource(R.drawable.ic_play);
+                            mediaPlayer.stop();
+                            mediaPlayer.reset();
+                            iceClient.stopMusique(ip);
+
                         }
 
-                        //updateSeekBar();
+                        updateSeekBar();
                         mDialog.dismiss();
                     }
                 };
 
-                //mp3Player.execute("http://mic.duytan.edu.vn:86/ncs.mp3"); // Direct link com.mp3 file
-                mp3Player.execute("http://192.168.43.214:8090/sample.com.mp3");
+                mp3Player.execute("http://192.168.0.17:8090/"+ip+".mp3"); // Direct link com.mp3 file
 
                 musicView.start();
             }
@@ -150,14 +190,14 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
                     Fragment selectedFragment = null;
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
-                            selectedFragment = new HomeFragment();
+                            selectedFragment = defaultHomeFragment;
 
                             break;
                         case R.id.navigation_favorities:
-                            selectedFragment = new FavoritesFragment();
+                            selectedFragment = new com.mp3playermiddleware.FavoritesFragment();
                             break;
                         case R.id.navigation_speechtotext:
-                            selectedFragment = new SpeechToTextFragment();
+                            selectedFragment = new com.mp3playermiddleware.SpeechToTextFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

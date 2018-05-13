@@ -87,6 +87,39 @@ public interface ManageMusicPrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
+    default boolean stopMusique(String ipClient)
+    {
+        return stopMusique(ipClient, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default boolean stopMusique(String ipClient, java.util.Map<String, String> context)
+    {
+        return _iceI_stopMusiqueAsync(ipClient, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.Boolean> stopMusiqueAsync(String ipClient)
+    {
+        return _iceI_stopMusiqueAsync(ipClient, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.Boolean> stopMusiqueAsync(String ipClient, java.util.Map<String, String> context)
+    {
+        return _iceI_stopMusiqueAsync(ipClient, context, false);
+    }
+
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> _iceI_stopMusiqueAsync(String iceP_ipClient, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "stopMusique", null, sync, null);
+        f.invoke(true, context, null, ostr -> {
+                     ostr.writeString(iceP_ipClient);
+                 }, istr -> {
+                     boolean ret;
+                     ret = istr.readBool();
+                     return ret;
+                 });
+        return f;
+    }
+
     /**
      * Contacts the remote server to verify that the object implements this type.
      * Raises a local exception if a communication error occurs.
