@@ -59,6 +59,18 @@ if 'ManageMusicPrx' not in _M_MP3.__dict__:
         def end_streamerMusique(self, _r):
             return _M_MP3.ManageMusic._op_streamerMusique.end(self, _r)
 
+        def stopMusique(self, ipClient, context=None):
+            return _M_MP3.ManageMusic._op_stopMusique.invoke(self, ((ipClient, ), context))
+
+        def stopMusiqueAsync(self, ipClient, context=None):
+            return _M_MP3.ManageMusic._op_stopMusique.invokeAsync(self, ((ipClient, ), context))
+
+        def begin_stopMusique(self, ipClient, _response=None, _ex=None, _sent=None, context=None):
+            return _M_MP3.ManageMusic._op_stopMusique.begin(self, ((ipClient, ), _response, _ex, _sent, context))
+
+        def end_stopMusique(self, _r):
+            return _M_MP3.ManageMusic._op_stopMusique.end(self, _r)
+
         @staticmethod
         def checkedCast(proxy, facetOrContext=None, context=None):
             return _M_MP3.ManageMusicPrx.ice_checkedCast(proxy, '::MP3::ManageMusic', facetOrContext, context)
@@ -94,6 +106,9 @@ if 'ManageMusicPrx' not in _M_MP3.__dict__:
         def streamerMusique(self, mediaName, ipClient, current=None):
             raise NotImplementedError("servant method 'streamerMusique' not implemented")
 
+        def stopMusique(self, ipClient, current=None):
+            raise NotImplementedError("servant method 'stopMusique' not implemented")
+
         def __str__(self):
             return IcePy.stringify(self, _M_MP3._t_ManageMusicDisp)
 
@@ -104,6 +119,7 @@ if 'ManageMusicPrx' not in _M_MP3.__dict__:
 
     ManageMusic._op_getListeMusic = IcePy.Operation('getListeMusic', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), _M_MP3._t_listMusiques, False, 0), ())
     ManageMusic._op_streamerMusique = IcePy.Operation('streamerMusique', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0), ((), IcePy._t_string, False, 0)), (), ((), IcePy._t_bool, False, 0), ())
+    ManageMusic._op_stopMusique = IcePy.Operation('stopMusique', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), IcePy._t_bool, False, 0), ())
 
     _M_MP3.ManageMusic = ManageMusic
     del ManageMusic
