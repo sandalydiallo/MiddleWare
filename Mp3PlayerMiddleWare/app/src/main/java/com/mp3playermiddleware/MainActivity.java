@@ -108,13 +108,6 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
                         try {
 
                             mediaPlayer.setDataSource(strings[0]);
-                            /*mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                @Override
-                                public void onCompletion(MediaPlayer mediaPlayer) {
-                                    mediaPlayer.stop();
-                                    mediaPlayer.reset();
-                                }
-                            });*/
                             currenteMusicPlayin = textViewSelectedItem.getText().toString();
                             iceClient.streamer(textViewSelectedItem.getText().toString() , ip);
                             mediaPlayer.prepare();
@@ -155,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
                     }
                 };
 
-                mp3Player.execute("http://192.168.0.17:8090/"+ip+".mp3"); // Direct link com.mp3 file
+                mp3Player.execute("http://"+Config.ip_server+":8090/"+ip+".mp3"); // Direct link com.mp3 file
 
                 musicView.start();
             }

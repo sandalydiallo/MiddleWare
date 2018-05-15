@@ -28,6 +28,20 @@ public interface ManageMusic extends com.zeroc.Ice.Object
 
     boolean stopMusique(String ipClient, com.zeroc.Ice.Current current);
 
+    String addFile(FileInfo fileInfo, com.zeroc.Ice.Current current);
+
+    FileInfo[] afficherListeMusic(com.zeroc.Ice.Current current);
+
+    String deleteMusic(FileInfo fileInfo, com.zeroc.Ice.Current current);
+
+    FileInfo[] searchByAuthor(String author, com.zeroc.Ice.Current current);
+
+    FileInfo[] searchByName(String name, com.zeroc.Ice.Current current);
+
+    FileInfo[] searchByGenre(String genre, com.zeroc.Ice.Current current);
+
+    FileInfo[] searchByYear(String year, com.zeroc.Ice.Current current);
+
     static final String[] _iceIds =
     {
         "::Ice::Object",
@@ -92,13 +106,124 @@ public interface ManageMusic extends com.zeroc.Ice.Object
         return inS.setResult(ostr);
     }
 
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_addFile(ManageMusic obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    {
+        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        final com.zeroc.IceInternal.Holder<FileInfo> icePP_fileInfo = new com.zeroc.IceInternal.Holder<>();
+        istr.readValue(v -> icePP_fileInfo.value = v, FileInfo.class);
+        istr.readPendingValues();
+        inS.endReadParams();
+        FileInfo iceP_fileInfo = icePP_fileInfo.value;
+        String ret = obj.addFile(iceP_fileInfo, current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        ostr.writeString(ret);
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
+    }
+
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_afficherListeMusic(ManageMusic obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    {
+        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
+        inS.readEmptyParams();
+        FileInfo[] ret = obj.afficherListeMusic(current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        fileInfosHelper.write(ostr, ret);
+        ostr.writePendingValues();
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
+    }
+
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_deleteMusic(ManageMusic obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    {
+        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        final com.zeroc.IceInternal.Holder<FileInfo> icePP_fileInfo = new com.zeroc.IceInternal.Holder<>();
+        istr.readValue(v -> icePP_fileInfo.value = v, FileInfo.class);
+        istr.readPendingValues();
+        inS.endReadParams();
+        FileInfo iceP_fileInfo = icePP_fileInfo.value;
+        String ret = obj.deleteMusic(iceP_fileInfo, current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        ostr.writeString(ret);
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
+    }
+
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_searchByAuthor(ManageMusic obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    {
+        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        String iceP_author;
+        iceP_author = istr.readString();
+        inS.endReadParams();
+        FileInfo[] ret = obj.searchByAuthor(iceP_author, current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        fileInfosHelper.write(ostr, ret);
+        ostr.writePendingValues();
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
+    }
+
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_searchByName(ManageMusic obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    {
+        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        String iceP_name;
+        iceP_name = istr.readString();
+        inS.endReadParams();
+        FileInfo[] ret = obj.searchByName(iceP_name, current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        fileInfosHelper.write(ostr, ret);
+        ostr.writePendingValues();
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
+    }
+
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_searchByGenre(ManageMusic obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    {
+        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        String iceP_genre;
+        iceP_genre = istr.readString();
+        inS.endReadParams();
+        FileInfo[] ret = obj.searchByGenre(iceP_genre, current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        fileInfosHelper.write(ostr, ret);
+        ostr.writePendingValues();
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
+    }
+
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_searchByYear(ManageMusic obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    {
+        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        String iceP_year;
+        iceP_year = istr.readString();
+        inS.endReadParams();
+        FileInfo[] ret = obj.searchByYear(iceP_year, current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        fileInfosHelper.write(ostr, ret);
+        ostr.writePendingValues();
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
+    }
+
     final static String[] _iceOps =
     {
+        "addFile",
+        "afficherListeMusic",
+        "deleteMusic",
         "getListeMusic",
         "ice_id",
         "ice_ids",
         "ice_isA",
         "ice_ping",
+        "searchByAuthor",
+        "searchByGenre",
+        "searchByName",
+        "searchByYear",
         "stopMusique",
         "streamerMusique"
     };
@@ -117,29 +242,57 @@ public interface ManageMusic extends com.zeroc.Ice.Object
         {
             case 0:
             {
-                return _iceD_getListeMusic(this, in, current);
+                return _iceD_addFile(this, in, current);
             }
             case 1:
             {
-                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
+                return _iceD_afficherListeMusic(this, in, current);
             }
             case 2:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
+                return _iceD_deleteMusic(this, in, current);
             }
             case 3:
             {
-                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
+                return _iceD_getListeMusic(this, in, current);
             }
             case 4:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
             }
             case 5:
             {
-                return _iceD_stopMusique(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
             }
             case 6:
+            {
+                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
+            }
+            case 7:
+            {
+                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
+            }
+            case 8:
+            {
+                return _iceD_searchByAuthor(this, in, current);
+            }
+            case 9:
+            {
+                return _iceD_searchByGenre(this, in, current);
+            }
+            case 10:
+            {
+                return _iceD_searchByName(this, in, current);
+            }
+            case 11:
+            {
+                return _iceD_searchByYear(this, in, current);
+            }
+            case 12:
+            {
+                return _iceD_stopMusique(this, in, current);
+            }
+            case 13:
             {
                 return _iceD_streamerMusique(this, in, current);
             }

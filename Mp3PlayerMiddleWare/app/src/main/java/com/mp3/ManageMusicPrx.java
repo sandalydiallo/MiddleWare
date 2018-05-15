@@ -120,6 +120,242 @@ public interface ManageMusicPrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
+    default String addFile(FileInfo fileInfo)
+    {
+        return addFile(fileInfo, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default String addFile(FileInfo fileInfo, java.util.Map<String, String> context)
+    {
+        return _iceI_addFileAsync(fileInfo, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.String> addFileAsync(FileInfo fileInfo)
+    {
+        return _iceI_addFileAsync(fileInfo, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.String> addFileAsync(FileInfo fileInfo, java.util.Map<String, String> context)
+    {
+        return _iceI_addFileAsync(fileInfo, context, false);
+    }
+
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.String> _iceI_addFileAsync(FileInfo iceP_fileInfo, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<java.lang.String> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "addFile", null, sync, null);
+        f.invoke(true, context, null, ostr -> {
+                     ostr.writeValue(iceP_fileInfo);
+                     ostr.writePendingValues();
+                 }, istr -> {
+                     String ret;
+                     ret = istr.readString();
+                     return ret;
+                 });
+        return f;
+    }
+
+    default FileInfo[] afficherListeMusic()
+    {
+        return afficherListeMusic(com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default FileInfo[] afficherListeMusic(java.util.Map<String, String> context)
+    {
+        return _iceI_afficherListeMusicAsync(context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<FileInfo[]> afficherListeMusicAsync()
+    {
+        return _iceI_afficherListeMusicAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<FileInfo[]> afficherListeMusicAsync(java.util.Map<String, String> context)
+    {
+        return _iceI_afficherListeMusicAsync(context, false);
+    }
+
+    default com.zeroc.IceInternal.OutgoingAsync<FileInfo[]> _iceI_afficherListeMusicAsync(java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<FileInfo[]> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "afficherListeMusic", null, sync, null);
+        f.invoke(true, context, null, null, istr -> {
+                     FileInfo[] ret;
+                     ret = fileInfosHelper.read(istr);
+                     istr.readPendingValues();
+                     return ret;
+                 });
+        return f;
+    }
+
+    default String deleteMusic(FileInfo fileInfo)
+    {
+        return deleteMusic(fileInfo, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default String deleteMusic(FileInfo fileInfo, java.util.Map<String, String> context)
+    {
+        return _iceI_deleteMusicAsync(fileInfo, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.String> deleteMusicAsync(FileInfo fileInfo)
+    {
+        return _iceI_deleteMusicAsync(fileInfo, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.String> deleteMusicAsync(FileInfo fileInfo, java.util.Map<String, String> context)
+    {
+        return _iceI_deleteMusicAsync(fileInfo, context, false);
+    }
+
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.String> _iceI_deleteMusicAsync(FileInfo iceP_fileInfo, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<java.lang.String> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "deleteMusic", null, sync, null);
+        f.invoke(true, context, null, ostr -> {
+                     ostr.writeValue(iceP_fileInfo);
+                     ostr.writePendingValues();
+                 }, istr -> {
+                     String ret;
+                     ret = istr.readString();
+                     return ret;
+                 });
+        return f;
+    }
+
+    default FileInfo[] searchByAuthor(String author)
+    {
+        return searchByAuthor(author, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default FileInfo[] searchByAuthor(String author, java.util.Map<String, String> context)
+    {
+        return _iceI_searchByAuthorAsync(author, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<FileInfo[]> searchByAuthorAsync(String author)
+    {
+        return _iceI_searchByAuthorAsync(author, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<FileInfo[]> searchByAuthorAsync(String author, java.util.Map<String, String> context)
+    {
+        return _iceI_searchByAuthorAsync(author, context, false);
+    }
+
+    default com.zeroc.IceInternal.OutgoingAsync<FileInfo[]> _iceI_searchByAuthorAsync(String iceP_author, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<FileInfo[]> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "searchByAuthor", null, sync, null);
+        f.invoke(true, context, null, ostr -> {
+                     ostr.writeString(iceP_author);
+                 }, istr -> {
+                     FileInfo[] ret;
+                     ret = fileInfosHelper.read(istr);
+                     istr.readPendingValues();
+                     return ret;
+                 });
+        return f;
+    }
+
+    default FileInfo[] searchByName(String name)
+    {
+        return searchByName(name, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default FileInfo[] searchByName(String name, java.util.Map<String, String> context)
+    {
+        return _iceI_searchByNameAsync(name, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<FileInfo[]> searchByNameAsync(String name)
+    {
+        return _iceI_searchByNameAsync(name, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<FileInfo[]> searchByNameAsync(String name, java.util.Map<String, String> context)
+    {
+        return _iceI_searchByNameAsync(name, context, false);
+    }
+
+    default com.zeroc.IceInternal.OutgoingAsync<FileInfo[]> _iceI_searchByNameAsync(String iceP_name, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<FileInfo[]> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "searchByName", null, sync, null);
+        f.invoke(true, context, null, ostr -> {
+                     ostr.writeString(iceP_name);
+                 }, istr -> {
+                     FileInfo[] ret;
+                     ret = fileInfosHelper.read(istr);
+                     istr.readPendingValues();
+                     return ret;
+                 });
+        return f;
+    }
+
+    default FileInfo[] searchByGenre(String genre)
+    {
+        return searchByGenre(genre, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default FileInfo[] searchByGenre(String genre, java.util.Map<String, String> context)
+    {
+        return _iceI_searchByGenreAsync(genre, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<FileInfo[]> searchByGenreAsync(String genre)
+    {
+        return _iceI_searchByGenreAsync(genre, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<FileInfo[]> searchByGenreAsync(String genre, java.util.Map<String, String> context)
+    {
+        return _iceI_searchByGenreAsync(genre, context, false);
+    }
+
+    default com.zeroc.IceInternal.OutgoingAsync<FileInfo[]> _iceI_searchByGenreAsync(String iceP_genre, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<FileInfo[]> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "searchByGenre", null, sync, null);
+        f.invoke(true, context, null, ostr -> {
+                     ostr.writeString(iceP_genre);
+                 }, istr -> {
+                     FileInfo[] ret;
+                     ret = fileInfosHelper.read(istr);
+                     istr.readPendingValues();
+                     return ret;
+                 });
+        return f;
+    }
+
+    default FileInfo[] searchByYear(String year)
+    {
+        return searchByYear(year, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default FileInfo[] searchByYear(String year, java.util.Map<String, String> context)
+    {
+        return _iceI_searchByYearAsync(year, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<FileInfo[]> searchByYearAsync(String year)
+    {
+        return _iceI_searchByYearAsync(year, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<FileInfo[]> searchByYearAsync(String year, java.util.Map<String, String> context)
+    {
+        return _iceI_searchByYearAsync(year, context, false);
+    }
+
+    default com.zeroc.IceInternal.OutgoingAsync<FileInfo[]> _iceI_searchByYearAsync(String iceP_year, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<FileInfo[]> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "searchByYear", null, sync, null);
+        f.invoke(true, context, null, ostr -> {
+                     ostr.writeString(iceP_year);
+                 }, istr -> {
+                     FileInfo[] ret;
+                     ret = fileInfosHelper.read(istr);
+                     istr.readPendingValues();
+                     return ret;
+                 });
+        return f;
+    }
+
     /**
      * Contacts the remote server to verify that the object implements this type.
      * Raises a local exception if a communication error occurs.
