@@ -26,6 +26,45 @@ import Ice, IcePy
 _M_MP3 = Ice.openModule('MP3')
 __name__ = 'MP3'
 
+if 'FileInfo' not in _M_MP3.__dict__:
+    _M_MP3.FileInfo = Ice.createTempClass()
+    class FileInfo(Ice.Value):
+        def __init__(self, name='', path='', author='', album='', genre='', year=''):
+            self.name = name
+            self.path = path
+            self.author = author
+            self.album = album
+            self.genre = genre
+            self.year = year
+
+        def ice_id(self):
+            return '::MP3::FileInfo'
+
+        @staticmethod
+        def ice_staticId():
+            return '::MP3::FileInfo'
+
+        def __str__(self):
+            return IcePy.stringify(self, _M_MP3._t_FileInfo)
+
+        __repr__ = __str__
+
+    _M_MP3._t_FileInfo = IcePy.defineValue('::MP3::FileInfo', FileInfo, -1, (), False, False, None, (
+        ('name', (), IcePy._t_string, False, 0),
+        ('path', (), IcePy._t_string, False, 0),
+        ('author', (), IcePy._t_string, False, 0),
+        ('album', (), IcePy._t_string, False, 0),
+        ('genre', (), IcePy._t_string, False, 0),
+        ('year', (), IcePy._t_string, False, 0)
+    ))
+    FileInfo._ice_type = _M_MP3._t_FileInfo
+
+    _M_MP3.FileInfo = FileInfo
+    del FileInfo
+
+if '_t_fileInfos' not in _M_MP3.__dict__:
+    _M_MP3._t_fileInfos = IcePy.defineSequence('::MP3::fileInfos', (), _M_MP3._t_FileInfo)
+
 if '_t_listMusiques' not in _M_MP3.__dict__:
     _M_MP3._t_listMusiques = IcePy.defineSequence('::MP3::listMusiques', (), IcePy._t_string)
 
@@ -71,6 +110,90 @@ if 'ManageMusicPrx' not in _M_MP3.__dict__:
         def end_stopMusique(self, _r):
             return _M_MP3.ManageMusic._op_stopMusique.end(self, _r)
 
+        def addFile(self, fileInfo, context=None):
+            return _M_MP3.ManageMusic._op_addFile.invoke(self, ((fileInfo, ), context))
+
+        def addFileAsync(self, fileInfo, context=None):
+            return _M_MP3.ManageMusic._op_addFile.invokeAsync(self, ((fileInfo, ), context))
+
+        def begin_addFile(self, fileInfo, _response=None, _ex=None, _sent=None, context=None):
+            return _M_MP3.ManageMusic._op_addFile.begin(self, ((fileInfo, ), _response, _ex, _sent, context))
+
+        def end_addFile(self, _r):
+            return _M_MP3.ManageMusic._op_addFile.end(self, _r)
+
+        def afficherListeMusic(self, context=None):
+            return _M_MP3.ManageMusic._op_afficherListeMusic.invoke(self, ((), context))
+
+        def afficherListeMusicAsync(self, context=None):
+            return _M_MP3.ManageMusic._op_afficherListeMusic.invokeAsync(self, ((), context))
+
+        def begin_afficherListeMusic(self, _response=None, _ex=None, _sent=None, context=None):
+            return _M_MP3.ManageMusic._op_afficherListeMusic.begin(self, ((), _response, _ex, _sent, context))
+
+        def end_afficherListeMusic(self, _r):
+            return _M_MP3.ManageMusic._op_afficherListeMusic.end(self, _r)
+
+        def deleteMusic(self, fileInfo, context=None):
+            return _M_MP3.ManageMusic._op_deleteMusic.invoke(self, ((fileInfo, ), context))
+
+        def deleteMusicAsync(self, fileInfo, context=None):
+            return _M_MP3.ManageMusic._op_deleteMusic.invokeAsync(self, ((fileInfo, ), context))
+
+        def begin_deleteMusic(self, fileInfo, _response=None, _ex=None, _sent=None, context=None):
+            return _M_MP3.ManageMusic._op_deleteMusic.begin(self, ((fileInfo, ), _response, _ex, _sent, context))
+
+        def end_deleteMusic(self, _r):
+            return _M_MP3.ManageMusic._op_deleteMusic.end(self, _r)
+
+        def searchByAuthor(self, author, context=None):
+            return _M_MP3.ManageMusic._op_searchByAuthor.invoke(self, ((author, ), context))
+
+        def searchByAuthorAsync(self, author, context=None):
+            return _M_MP3.ManageMusic._op_searchByAuthor.invokeAsync(self, ((author, ), context))
+
+        def begin_searchByAuthor(self, author, _response=None, _ex=None, _sent=None, context=None):
+            return _M_MP3.ManageMusic._op_searchByAuthor.begin(self, ((author, ), _response, _ex, _sent, context))
+
+        def end_searchByAuthor(self, _r):
+            return _M_MP3.ManageMusic._op_searchByAuthor.end(self, _r)
+
+        def searchByName(self, name, context=None):
+            return _M_MP3.ManageMusic._op_searchByName.invoke(self, ((name, ), context))
+
+        def searchByNameAsync(self, name, context=None):
+            return _M_MP3.ManageMusic._op_searchByName.invokeAsync(self, ((name, ), context))
+
+        def begin_searchByName(self, name, _response=None, _ex=None, _sent=None, context=None):
+            return _M_MP3.ManageMusic._op_searchByName.begin(self, ((name, ), _response, _ex, _sent, context))
+
+        def end_searchByName(self, _r):
+            return _M_MP3.ManageMusic._op_searchByName.end(self, _r)
+
+        def searchByGenre(self, genre, context=None):
+            return _M_MP3.ManageMusic._op_searchByGenre.invoke(self, ((genre, ), context))
+
+        def searchByGenreAsync(self, genre, context=None):
+            return _M_MP3.ManageMusic._op_searchByGenre.invokeAsync(self, ((genre, ), context))
+
+        def begin_searchByGenre(self, genre, _response=None, _ex=None, _sent=None, context=None):
+            return _M_MP3.ManageMusic._op_searchByGenre.begin(self, ((genre, ), _response, _ex, _sent, context))
+
+        def end_searchByGenre(self, _r):
+            return _M_MP3.ManageMusic._op_searchByGenre.end(self, _r)
+
+        def searchByYear(self, year, context=None):
+            return _M_MP3.ManageMusic._op_searchByYear.invoke(self, ((year, ), context))
+
+        def searchByYearAsync(self, year, context=None):
+            return _M_MP3.ManageMusic._op_searchByYear.invokeAsync(self, ((year, ), context))
+
+        def begin_searchByYear(self, year, _response=None, _ex=None, _sent=None, context=None):
+            return _M_MP3.ManageMusic._op_searchByYear.begin(self, ((year, ), _response, _ex, _sent, context))
+
+        def end_searchByYear(self, _r):
+            return _M_MP3.ManageMusic._op_searchByYear.end(self, _r)
+
         @staticmethod
         def checkedCast(proxy, facetOrContext=None, context=None):
             return _M_MP3.ManageMusicPrx.ice_checkedCast(proxy, '::MP3::ManageMusic', facetOrContext, context)
@@ -109,6 +232,27 @@ if 'ManageMusicPrx' not in _M_MP3.__dict__:
         def stopMusique(self, ipClient, current=None):
             raise NotImplementedError("servant method 'stopMusique' not implemented")
 
+        def addFile(self, fileInfo, current=None):
+            raise NotImplementedError("servant method 'addFile' not implemented")
+
+        def afficherListeMusic(self, current=None):
+            raise NotImplementedError("servant method 'afficherListeMusic' not implemented")
+
+        def deleteMusic(self, fileInfo, current=None):
+            raise NotImplementedError("servant method 'deleteMusic' not implemented")
+
+        def searchByAuthor(self, author, current=None):
+            raise NotImplementedError("servant method 'searchByAuthor' not implemented")
+
+        def searchByName(self, name, current=None):
+            raise NotImplementedError("servant method 'searchByName' not implemented")
+
+        def searchByGenre(self, genre, current=None):
+            raise NotImplementedError("servant method 'searchByGenre' not implemented")
+
+        def searchByYear(self, year, current=None):
+            raise NotImplementedError("servant method 'searchByYear' not implemented")
+
         def __str__(self):
             return IcePy.stringify(self, _M_MP3._t_ManageMusicDisp)
 
@@ -120,6 +264,13 @@ if 'ManageMusicPrx' not in _M_MP3.__dict__:
     ManageMusic._op_getListeMusic = IcePy.Operation('getListeMusic', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), _M_MP3._t_listMusiques, False, 0), ())
     ManageMusic._op_streamerMusique = IcePy.Operation('streamerMusique', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0), ((), IcePy._t_string, False, 0)), (), ((), IcePy._t_bool, False, 0), ())
     ManageMusic._op_stopMusique = IcePy.Operation('stopMusique', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), IcePy._t_bool, False, 0), ())
+    ManageMusic._op_addFile = IcePy.Operation('addFile', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), _M_MP3._t_FileInfo, False, 0),), (), ((), IcePy._t_string, False, 0), ())
+    ManageMusic._op_afficherListeMusic = IcePy.Operation('afficherListeMusic', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (), (), ((), _M_MP3._t_fileInfos, False, 0), ())
+    ManageMusic._op_deleteMusic = IcePy.Operation('deleteMusic', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), _M_MP3._t_FileInfo, False, 0),), (), ((), IcePy._t_string, False, 0), ())
+    ManageMusic._op_searchByAuthor = IcePy.Operation('searchByAuthor', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), _M_MP3._t_fileInfos, False, 0), ())
+    ManageMusic._op_searchByName = IcePy.Operation('searchByName', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), _M_MP3._t_fileInfos, False, 0), ())
+    ManageMusic._op_searchByGenre = IcePy.Operation('searchByGenre', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), _M_MP3._t_fileInfos, False, 0), ())
+    ManageMusic._op_searchByYear = IcePy.Operation('searchByYear', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), _M_MP3._t_fileInfos, False, 0), ())
 
     _M_MP3.ManageMusic = ManageMusic
     del ManageMusic
