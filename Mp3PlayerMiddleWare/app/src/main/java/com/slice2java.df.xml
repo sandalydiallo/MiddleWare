@@ -1,8 +1,10 @@
 <state>
-  <timestamp value='1526214443991' />
+  <timestamp value='1526419262328' />
   <sourceSet name='default'>
     <source name='C:\Users\alpha\Git\MiddleWare\Mp3PlayerMiddleWare\app\src\main\java\com\slice\MP3IceInterface.ice'>
+      <file name='C:\Users\alpha\Git\MiddleWare\Mp3PlayerMiddleWare\app\src\main\java\com\mp3\FileInfo.java' />
       <file name='C:\Users\alpha\Git\MiddleWare\Mp3PlayerMiddleWare\app\src\main\java\com\mp3\ManageMusic.java' />
+      <file name='C:\Users\alpha\Git\MiddleWare\Mp3PlayerMiddleWare\app\src\main\java\com\mp3\fileInfosHelper.java' />
       <file name='C:\Users\alpha\Git\MiddleWare\Mp3PlayerMiddleWare\app\src\main\java\com\mp3\ManageMusicPrx.java' />
       <file name='C:\Users\alpha\Git\MiddleWare\Mp3PlayerMiddleWare\app\src\main\java\com\mp3\_ManageMusicPrxI.java' />
     </source>

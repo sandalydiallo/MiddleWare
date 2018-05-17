@@ -1,7 +1,9 @@
 package com.mp3playermiddleware;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,25 @@ public class HomeFragment extends android.support.v4.app.Fragment {
 
         iceClient = new IceClient();
         String[] items = iceClient.getInstanceServer();
+        if (items.length == 0){
+
+            AlertDialog.Builder altdial = new AlertDialog.Builder(getActivity());
+            altdial.setMessage("Le serveur n'est pas lancer.\n " +
+                    "1 - Configurer l'ip du serveur,\n 2 - Lancer le serveur.\n " +
+                    "3 - Rélancer l'application").setCancelable(false)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //System.exit(1);
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert = altdial.create();
+            alert.setTitle("Informations");
+            alert.show();
+        }
+
 
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
         addItemsInlistMusic(items,view);
@@ -36,7 +57,8 @@ public class HomeFragment extends android.support.v4.app.Fragment {
 
 
         selectedItem = (TextView)getActivity().findViewById(R.id.textViewSelectedItem);
-        selectedItem.setText(items[0]);
+        if (items.length > 0 )
+            selectedItem.setText(items[0]);
 
 
         list_music.setOnItemClickListener(new AdapterView.OnItemClickListener() {
