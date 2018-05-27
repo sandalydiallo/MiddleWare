@@ -23,6 +23,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import dyanamitechetan.vusikview.VusikView;
+import webservice.WebServiceManager;
 
 public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBufferingUpdateListener,MediaPlayer.OnCompletionListener{
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         wm = (WifiManager) getSystemService(WIFI_SERVICE);
         ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
@@ -186,9 +188,9 @@ public class MainActivity extends AppCompatActivity implements  MediaPlayer.OnBu
                             selectedFragment = defaultHomeFragment;
 
                             break;
-                        case R.id.navigation_favorities:
+                        /*case R.id.navigation_favorities:
                             selectedFragment = new com.mp3playermiddleware.FavoritesFragment();
-                            break;
+                            break;*/
                         case R.id.navigation_speechtotext:
                             selectedFragment = new com.mp3playermiddleware.SpeechToTextFragment();
                             break;

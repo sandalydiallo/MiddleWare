@@ -6,7 +6,7 @@ package mp3;
 
 public class Config {
 
-    public static String ip_server= "192.168.0.17";
+    public static String ip_server= "192.168.43.214";
     public static String tcp_port_server= "10000";
     public static String udp_port_server= "10000";
     public static String tcp = "tcp";
